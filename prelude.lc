@@ -1,0 +1,23 @@
+true = λx. λy. x
+false = λx. λy. y
+
+pair = λx. λy. λp. p x y
+fst = λp. p (λx. λy. x)
+snd = λp. p (λx. λy. y)
+letpair = λp. λf. p f
+
+succ = λn. λg. λc. g (n g c)
+zero = λg. λc. c
+one = λg. λc. g c
+two = λg. λc. g (g c)
+three = λg. λc. g (g (g c))
+plus = λn. λk. n succ k
+if0 = λn. n (λb. false) true
+
+pr = λg. λc. λn. snd (n (λp. p (λk. λx. pair (succ k) (g k x))) (pair zero c))
+pred = pr (λk. λx. k) zero
+
+I = λx. x
+K = λx. λy. x
+Omega = (λx. x x) (λx. x x)
+Y = λf. (λx. f (x x)) (λx. f (x x))
